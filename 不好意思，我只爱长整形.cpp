@@ -11,13 +11,13 @@ char name[10];
 long long tel;
 struct Stu*next;
 }stud;
-FILE *fp; //ÎÄ¼şÖ¸Õë
+FILE *fp; //æ–‡ä»¶æŒ‡é’ˆ
 void CreLi(stud *&s)
 {
 s=(stud *)malloc(sizeof(stud));
 s->next=NULL;
 }
-void Loading(stud * &s,long long ID,char *Name,long long Tel) //ÊäÈë¼ÇÂ¼
+void Loading(stud * &s,long long ID,char *Name,long long Tel) //è¾“å…¥è®°å½•
 {
 stud *r,*t=s;
 while(t->next!=NULL)
@@ -32,7 +32,7 @@ r->next=NULL;
 t->next=(stud *)malloc(sizeof(stud));
 t->next=r;
 }
-bool DeLi(stud * &s,long long ID) //É¾³ı¼ÇÂ¼
+bool DeLi(stud * &s,long long ID) //åˆ é™¤è®°å½•
 {
 stud *r=s,*q,*pre=s;
 r=r->next;
@@ -54,7 +54,7 @@ printf("successfully delete\n");
 return true;
 }
 }
-void Show(stud *s) //Êä³ö¼ÇÂ¼
+void Show(stud *s) //è¾“å‡ºè®°å½•
 {
 if(s!=NULL)
 s=s->next;
@@ -73,7 +73,7 @@ else
 printf("The address book is empty\n");
 }
 }
-bool NOS(stud *&s,char *Name) //°´Ãû×Ö²éÕÒ
+bool NOS(stud *&s,char *Name) //æŒ‰åå­—æŸ¥æ‰¾
 {
 stud *p,*pre=s;
 p=s->next;
@@ -98,17 +98,17 @@ return true;
 }
 void Saving(stud * s) //
 {
-fp=fopen("d:\\in.txt","w"); //Êı¾İ±£´æµ½ÎÄ¼şÖĞ
+fp=fopen("data.txt","w"); //æ•°æ®ä¿å­˜åˆ°æ–‡ä»¶ä¸­
 if(s!=NULL)
 s=s->next;
 while(s!=NULL)
 {
-fprintf(fp,"%lld\t%s\t%lld\n",s->id,s->name,s->tel);//Ğ´ÈëÎÄ¼ş
+fprintf(fp,"%lld\t%s\t%lld\n",s->id,s->name,s->tel);//å†™å…¥æ–‡ä»¶
 s=s->next;
 }
 fclose(fp);
 }
-void Empty(stud * &s) //Çå¿Õ¼ÇÂ¼
+void Empty(stud * &s) //æ¸…ç©ºè®°å½•
 {
 stud *p=s,*q=s;
 p=p->next;
@@ -124,15 +124,15 @@ free(p);
 s->next=NULL;
 printf("Address Book clearance completed\n");
 }
-void Start(stud *s) // ³õÊ¼»¯ºÍÔØÈëÎÄ¼şÖĞÊı¾İ
+void Start(stud *s) // åˆå§‹åŒ–å’Œè½½å…¥æ–‡ä»¶ä¸­æ•°æ®
 {
-system("color 07"); //ÆÁÄ»¡¢ ×ÖÌåÑÕÉ«
+system("color 07"); //å±å¹•ã€ å­—ä½“é¢œè‰²
 char Name[10];
 int ID,Tel;
-fp=fopen("C:\\Users\\wyx03\\Desktop","a"); //´ÓÎÄ¼şÖĞ¼ÓÔØÊı¾İ£¬Èç¹ûÃ»ÓĞ¸ÃÎÄ¼şÔòĞÂ½¨
+fp=fopen("data.txt","a"); //ä»æ–‡ä»¶ä¸­åŠ è½½æ•°æ®ï¼Œå¦‚æœæ²¡æœ‰è¯¥æ–‡ä»¶åˆ™æ–°å»º
 fclose(fp);
-fp=fopen("C:\\Users\\wyx03\\Desktop","r");
-while(fscanf(fp,"%lld%s%lld",&ID,Name,&Tel)!=EOF) //´ÓÎÄ¼şÖĞ¶ÁÈëÊı¾İ
+fp=fopen("data.txt","r");
+while(fscanf(fp,"%lld%s%lld",&ID,Name,&Tel)!=EOF) //ä»æ–‡ä»¶ä¸­è¯»å…¥æ•°æ®
 
 Loading(s,ID,Name,Tel);
 fclose(fp);
